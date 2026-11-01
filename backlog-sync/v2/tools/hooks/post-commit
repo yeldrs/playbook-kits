@@ -1,0 +1,6 @@
+#!/bin/sh
+# Synchronise le backlog vers Notion apres chaque commit. Ne bloque jamais le commit :
+# un echec est signale, la synchro se rattrape au prochain lancement.
+cd "$(git rev-parse --show-toplevel)" || exit 0
+node tools/notion-ref.js backlog-sync --profile project --apply || echo "post-commit : la synchro Notion a echoue, relancer 'node tools/notion-ref.js backlog-sync --profile project --apply'" >&2
+exit 0

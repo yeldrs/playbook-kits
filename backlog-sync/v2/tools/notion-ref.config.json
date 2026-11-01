@@ -1,0 +1,25 @@
+{
+  "notionVersion": "2022-06-28",
+  "profiles": {
+    "generic": {
+      "rootId": "<ROOT_MACRO_ID>",
+      "tokenEnv": "NOTION_REF_GENERIC_TOKEN",
+      "canWrite": false,
+      "canComment": false
+    },
+    "project": {
+      "rootId": "<ROOT_COPIE_ID>",
+      "tokenEnv": "NOTION_REF_PROJECT_TOKEN",
+      "canWrite": true,
+      "canComment": true
+    }
+  },
+  "writeAllowlist": [],
+  "writeDenylist": [],
+  "defaultApply": false,
+  "dumpPath": "_local/notion-ref-dump",
+  "backlog": {
+    "databaseTitle": "Backlog",
+    "inboxEpic": "E-07"
+  }
+}
