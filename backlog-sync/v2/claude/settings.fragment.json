@@ -1,0 +1,45 @@
+{
+  "attribution": { "commit": "", "pr": "" },
+  "includeGitInstructions": false,
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          { "type": "command", "command": "node \"$CLAUDE_PROJECT_DIR/tools/notion-ref.js\" backlog-pull --profile project --apply --hook", "timeout": 40 }
+        ]
+      }
+    ]
+  },
+  "permissions": {
+    "deny": [
+      "Bash(git push --force*)",
+      "Bash(git push -f*)",
+      "Bash(git push * --force*)",
+      "Bash(git push * -f*)",
+      "Bash(git push * +*)",
+      "Bash(git push --no-verify*)",
+      "Bash(git push * --no-verify*)",
+      "Bash(git commit --no-verify*)",
+      "Bash(git commit * --no-verify*)",
+      "Bash(git commit -n*)",
+      "Bash(git commit * -n)",
+      "Bash(git commit * -n *)",
+      "Bash(git commit -an*)",
+      "Bash(git commit -qn*)",
+      "Bash(git filter-branch*)",
+      "Bash(git filter-repo*)",
+      "Bash(git * core.hooksPath*)"
+    ],
+    "ask": [
+      "Bash(git push *)",
+      "Bash(git -C * push*)",
+      "Bash(git -c * push*)",
+      "Bash(git remote add *)",
+      "Bash(git remote set-url *)",
+      "Bash(git rebase *)",
+      "Bash(git reset --hard*)",
+      "Bash(git commit --amend*)",
+      "Bash(git commit * --amend*)"
+    ]
+  }
+}
