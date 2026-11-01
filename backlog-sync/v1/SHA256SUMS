@@ -1,0 +1,8 @@
+bcdd94c85e7248a5d9818864bae7e4e72dd0c78f2a70fd6108c0505c17b63819  ./claude/settings.fragment.json
+8bf2bd5cbb03b63b645198ba77ba22bd3d557f1066ea21e85a1f01ffc88dc959  ./claude/skills/done/SKILL.md
+9d80769e59001d4060461d320edc491a854b7b7cb3573a579cb357a62eb5cad9  ./docs/BACKLOG.md
+eafd68f482c350727a2f8eae92947e64ab727a0717714fae7ba3dad73d0ec757  ./tools/backlog-lib.js
+cc79e918fcec4ad901635ea1696936e4d3cd94cfd8fbcf651b3075db59d9eb60  ./tools/hooks/post-commit
+7513a75bcd11654c89552b1d1fd7a6171bd2e76f229b5c259dcdd1ff05177959  ./tools/install-hooks.sh
+bb8803060881294df942c21cbca76c4ba4cfa21c0ad22f5efefd9e89bb742ea4  ./tools/notion-ref.config.json
+5a7f0406a864ef02046de971cfa3d38162fdb9368a972ba5127fcb0b56ab5a36  ./tools/notion-ref.js
