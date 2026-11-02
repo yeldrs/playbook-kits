@@ -1,6 +1,6 @@
 # playbook-kits
 
-Kit de lancement pour un agent de code : cadrer un projet (neuf ou existant), puis mettre en place son dépôt sur mesure. Tout est local, rien ne passe par Notion sauf la synchro du backlog si le projet en a une.
+Kit de lancement pour un agent de code : cadrer un projet (neuf ou existant), puis mettre en place son dépôt sur mesure. Tout est local, rien ne passe par Notion sauf l'option de synchro du backlog, sur ton accord.
 
 ## Utiliser
 
@@ -11,18 +11,18 @@ Kit de lancement pour un agent de code : cadrer un projet (neuf ou existant), pu
    git switch -c playbook/rattachement
    ```
    Pas de git : copie le dossier entier et travaille dans la copie.
-2. **Télécharger le kit** dans un sous-dossier du projet (PowerShell ou bash) :
+2. **Télécharger le kit** dans un sous-dossier du projet (cmd, PowerShell ou bash) :
    ```
    git clone --depth 1 --branch launch-v1 https://github.com/yeldrs/playbook-kits _playbook
    ```
 3. **Faire ignorer le dossier par git** (exclusion locale, rien n'est versionné) :
-   ```
-   echo "_playbook/" >> .git/info/exclude
-   ```
+   - bash ou cmd : `echo _playbook/>> .git/info/exclude` (cmd : `.git\info\exclude`)
+   - PowerShell : `Add-Content -Encoding ascii .git/info/exclude "_playbook/"` (un simple `echo >>` écrit en UTF-16 et git ignore alors la ligne)
+   Vérifier : `git check-ignore _playbook`.
 4. **Ouvrir l'agent** dans le dossier du projet et lui dire :
    > Lis `_playbook/START.md` et suis-le.
-5. **Dérouler** : cadrage (l'agent écrit `CADRAGE.md` après ton accord), puis, dans une nouvelle session, la mise en place. Il audite l'existant, te propose un tableau d'architecture et attend ton accord avant de construire.
-6. **Contrôler** avant d'intégrer : `git diff pre-playbook --stat`. Chaque suppression ou déplacement doit avoir ton accord. Tu fusionnes toi-même.
+5. **Dérouler** : cadrage (l'agent écrit `CADRAGE.md` après ton accord), puis, dans une nouvelle session, la même phrase lance la mise en place. Il audite l'existant, te propose un tableau d'architecture (backlog en premier) et attend ton accord. Après accord, il construit en passes enchaînées sans autre prompt, puis s'arrête. Tes seules actions : répondre au tableau, lancer `git config core.hooksPath .githooks`, relire le diff.
+6. **Contrôler** avant d'intégrer : `git diff pre-playbook --stat`, puis lint, build et `node tools/backlog-check.js`. Chaque suppression ou déplacement doit avoir ton accord. Tu fusionnes toi-même.
 7. **Nettoyer** : supprime `_playbook/` quand tu n'en as plus besoin.
 
 ## Si le projet a déjà des instructions d'agent
@@ -37,12 +37,12 @@ Ton outil charge au démarrage le `CLAUDE.md`, l'`AGENTS.md`, les skills et les 
 - Elle ne copie aucun gabarit : l'architecture se déduit de `CADRAGE.md` (fiche de tri, état de l'existant) et d'un audit de l'existant (fichiers d'instructions, skills, hooks, doublons, contexte chargé à chaque session, scalabilité).
 - Elle chiffre le contexte permanent avant et après (octets, estimation de tokens) et propose un budget cible.
 - Elle ne supprime et n'écrase rien d'existant sans ton accord par élément.
-- Elle applique une règle anti-signature IA en quatre couches, testée dans un dépôt jetable.
+- Elle installe le kit anti-signature IA (4 couches), testé dans un dépôt jetable.
 - Elle propose les kits utiles (voir `KITS.md`).
 
 ## Versions
 
-- Le tag `launch-vN` fige le kit entier. Un kit de fonctionnalité a son propre tag (`backlog-sync-v2`) et son dossier versionné.
+- Le tag `launch-vN` fige le kit entier. Un kit de fonctionnalité a son propre dossier versionné (`backlog-sync/v3`, `anti-attribution/v1`) et son tag. Les tags sont créés par toi (l'agent ne pousse pas de tag).
 - Ce dépôt est la source de vérité des prompts de lancement. Le playbook Notion garde la méthode et pointe ici.
 
 ## Non testé

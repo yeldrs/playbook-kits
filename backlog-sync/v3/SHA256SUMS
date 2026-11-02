@@ -1,0 +1,9 @@
+454563dd4b783f7260ca163e083a267f911611b782a89d5e3581b1b6bcafd5da  ./README.md
+d71c6ac74274100d1ae42f16d43afdf7a1a0da03eba5181d075b21ce8d84a2dc  ./claude/skills/done/SKILL.md
+9b9f34918fd7f3836b733150fd1876f15b63b1c17a3215b98d5477f5523d2102  ./docs/BACKLOG.md
+fc7e773e6462eb6bc4b623a55a2207cd65632035de54671192f7952f2a052d5a  ./githooks/pre-commit
+b3de7adf0dcbb6aeae5593afff7b1e4c1d42e03e5f168081c7bd316ef82e210d  ./tools/backlog-check.js
+eafd68f482c350727a2f8eae92947e64ab727a0717714fae7ba3dad73d0ec757  ./tools/backlog-lib.js
+bb8803060881294df942c21cbca76c4ba4cfa21c0ad22f5efefd9e89bb742ea4  ./tools/notion-ref.config.json
+5a7f0406a864ef02046de971cfa3d38162fdb9368a972ba5127fcb0b56ab5a36  ./tools/notion-ref.js
+6d43457f5c0332e412c7373c9103d084b7364125b37acd5572f46ce7e61e9efe  ./tools/package.json

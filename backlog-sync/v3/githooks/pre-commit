@@ -1,0 +1,16 @@
+#!/bin/sh
+# Appelle tools/backlog-check.js seulement si le backlog est dans l'index.
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+staged=$(git diff --cached --name-only --diff-filter=ACMRD)
+if ! echo "$staged" | grep -qE '^(docs/BACKLOG\.md$|docs/BACKLOG_ARCHIVE\.md$|docs/tasks/inbox/)'; then
+  exit 0
+fi
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit : node introuvable, backlog-check non execute." >&2
+  exit 1
+fi
+
+node tools/backlog-check.js || exit 1
+exit 0

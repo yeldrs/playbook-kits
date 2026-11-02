@@ -1,0 +1,36 @@
+#!/bin/sh
+# Refuse les signatures d'outil dans le message de commit :
+#  - trailers Co-Authored-By, Claude-Session, mentions de generation automatique ;
+#  - noms d'outil ou de modele.
+# Exceptions ancrees (sujet de merge d'une branche agent/...) : seuls les trailers sont verifies.
+# Les chemins et fichiers d'instructions (.claude/, CLAUDE.md) ne comptent pas comme mention.
+msg="$1"
+[ -f "$msg" ] || exit 0
+
+body=$(grep -v '^#' "$msg")
+subject=$(printf '%s\n' "$body" | sed -n '1p')
+
+fail() {
+  echo "commit-msg : message refuse ($1). Reecris un message neutre, sans trailer ni nom d'outil ou de modele." >&2
+  exit 1
+}
+
+# 1. Trailers et signatures : partout, sans exception.
+if printf '%s\n' "$body" | grep -qiE '^[[:space:]]*(co-authored-by|claude-session|generated-by)[[:space:]]*:'; then
+  fail "trailer"
+fi
+if printf '%s\n' "$body" | grep -qiE 'generated (with|by)|noreply@anthropic\.com'; then
+  fail "signature"
+fi
+
+# 2. Noms d'outil ou de modele : sauf sujet de merge conforme.
+if printf '%s\n' "$subject" | grep -qE "^Merge branch 'agent/[a-z0-9-]+'$|^Merge pull request #[0-9]+ from [A-Za-z0-9_.-]+/agent/[a-z0-9-]+$"; then
+  text=$(printf '%s\n' "$body" | sed '1d')
+else
+  text="$body"
+fi
+clean=$(printf '%s\n' "$text" | sed -E 's#\.claude/[^[:space:]]*##Ig; s#CLAUDE\.md##Ig')
+if printf '%s\n' "$clean" | grep -qiE '(^|[^a-z0-9])(claude|anthropic|opencode|openai|chatgpt|copilot|gemini|codex|sonnet|opus|haiku|fable|gpt-?[0-9])([^a-z0-9]|$)'; then
+  fail "nom d'outil ou de modele"
+fi
+exit 0

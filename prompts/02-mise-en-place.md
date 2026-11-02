@@ -34,9 +34,9 @@ AGENTS IA UTILISÉS : [LISTE]. Si je ne te l'ai pas donnée, demande-la-moi avan
 
 5. CONSTRUCTION (après accord sur le tableau), en passes que tu enchaînes seul, sans attendre ma validation entre elles. Le seul arrêt est l'échec d'un contrôle ou d'un test (STOP immédiat), puis l'arrêt final. Passe 1 : ajouts seuls, aucun fichier existant modifié. Un suivi existant n'est gelé ou remplacé que dans la même passe que la mise à jour des fichiers d'instructions, skills et docs qui le citent : aucun commit ne laisse une règle pointer vers du contenu supprimé. Date : celle du système, sinon aucune date. Un commit local par étape. Aucun push, aucune clé, aucune variable d'environnement dans un fichier. Message de commit neutre.
 
-6. ANTI-SIGNATURE : applique `_playbook/prompts/03-anti-attribution.md`, ses 4 couches (réglage de l'outil, consigne dans le fichier d'instructions, hooks commit-msg et pre-commit versionnés, audit). Teste dans un dépôt jetable, jamais dans le vrai. Chaque réglage est vérifié dans la doc de la version installée, sinon « non retrouvé » et les hooks font foi. Ne modifie jamais l'identité git.
+6. ANTI-SIGNATURE : applique `_playbook/prompts/03-anti-attribution.md` (kit `anti-attribution/v1`). Teste le hook et l'audit dans un dépôt jetable, jamais dans le vrai, avant le premier commit qui les utilise. Ne modifie jamais l'identité git.
 
-7. KITS RETENUS : suis la procédure de chaque kit dans `_playbook/KITS.md`, étape par étape. Les actions réservées à moi (créer des intégrations, exporter des tokens, activer des hooks) sont des STOP : tu me les indiques et tu attends.
+7. KITS RETENUS : suis la procédure de chaque kit dans `_playbook/KITS.md`, étape par étape (backlog : `backlog-sync/v3`). Les fichiers d'un kit s'installent tels quels (SHA-256 vérifiés). Les actions réservées à moi (`core.hooksPath`, intégrations, tokens) sont des STOP : tu me les indiques et tu attends. Messages de commit : portées neutres (jamais le nom d'un outil, même entre parenthèses).
 
 8. CONTRÔLE : relis ce que tu as créé. Retire tout ce qui n'a pas de source. Refais les mesures de l'étape 1 et compare-les au budget cible.
 

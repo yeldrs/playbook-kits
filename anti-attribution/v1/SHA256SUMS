@@ -1,0 +1,4 @@
+49f55244d6a82339b652fc6f11e01ab5ff43e5eebcfb314e39f18e19c766802b  ./README.md
+1bbde9074de31399ab6e9adacec846fc68a7b7916897186d18bc8210b4b62ac8  ./claude/settings.fragment.json
+c04119b033a1cff52498747bcdcc2495f13a007609449c35edf97630a7c44f2c  ./githooks/commit-msg
+07efc848c1486547cb24ecbd45f525009be6fd5cc86d0800db6b2e7bbeff1723  ./tools/audit-attribution.js

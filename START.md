@@ -31,6 +31,7 @@ Tu n'as besoin ni de Notion ni du réseau, sauf si un kit retenu l'exige (voir `
 
 - `prompts/01-cadrage.md` : cadrer le projet (neuf ou existant), produit `CADRAGE.md`.
 - `prompts/02-mise-en-place.md` : auditer l'existant et construire l'architecture du dépôt sur mesure.
-- `prompts/03-anti-attribution.md` : règle anti-signature IA en quatre couches, appliquée par la mise en place.
+- `prompts/03-anti-attribution.md` : installe le kit anti-signature IA (4 couches), appliqué par la mise en place.
 - `KITS.md` : kits optionnels et leur procédure.
-- `backlog-sync/` : fichiers du kit de synchro du backlog.
+- `anti-attribution/` : fichiers du kit anti-signature (v1).
+- `backlog-sync/` : fichiers du kit backlog (v3 fichier seul, v2 option Notion).
