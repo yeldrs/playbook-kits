@@ -13,10 +13,12 @@ AGENTS IA UTILISÉS : [LISTE]. Si je ne te l'ai pas donnée, demande-la-moi avan
    e. SCALABILITÉ : ce qui casse si le projet double de taille (fichier d'instructions qui grossit, liste qui s'allonge, absence d'index, dossier fourre-tout, règles sans propriétaire).
    f. COHÉRENCE AVEC LE CADRAGE : nature, plateformes, nombre d'écrans, finalité, contraintes dures de la fiche de tri contre l'état du dépôt. Liste les écarts sans trancher.
    g. MESURE DE DÉPART : les tailles ci-dessus, et les tests (nombre et résultat, si les lancer est sans effet de bord, sinon « non mesuré »).
+   h. ÉVALUATION DES RÈGLES EXISTANTES : pour chaque règle ou processus que le projet a déjà écrit (suivi d'avancement, migrations, commits, revue, etc.) : verdict (garder, améliorer, remplacer), un point positif et un point négatif, chacun avec sa preuve (fichier, ligne, mesure). Pas de complaisance envers l'existant, pas d'adhésion automatique au playbook : ce qui marche mieux que le playbook est gardé.
 
 2. DOC : pour chaque agent listé, vérifie dans la documentation de sa version installée quels fichiers d'instructions, skills et hooks il lit, et comment il les charge. N'invente aucun mécanisme. Une seule source de vérité, les autres fichiers la pointent. Mécanisme introuvable : écris « non retrouvé ».
 
 3. PROPOSITION (STOP, j'attends mon accord). Conçois l'architecture à partir de l'audit et du cadrage, pas d'un gabarit : la raison de chaque choix se lit dans l'un des deux.
+   BACKLOG (séquence de base, évalué sur tout projet, en premier dans le tableau). Lis `_playbook/backlog-sync/` (convention `docs/BACKLOG.md`, identifiants stables, statuts, dépendances, jalons, archive des tâches finies, `/done`). Compare-le au suivi que le projet utilise déjà, sur des critères mesurés : octets lus pour répondre à « quoi faire ensuite ? », identifiants et dépendances, sort des tâches finies, risque de double source de vérité. Verdict : appliquer, appliquer en partie, ou ne pas appliquer, avec la valeur ajoutée attendue au-delà de la simple priorisation. Liste chaque règle du projet que le backlog contredit (fichier, ligne), sans la trancher. La synchro Notion est une étape de connexion séparée et optionnelle : à proposer à part, jamais comme condition du backlog.
    Un tableau : élément (dossier, fichier, skill, hook, script) | source (constat de l'audit ou ligne de CADRAGE.md, ou raison technique vérifiable) | alternative plus simple | état (nouveau, existant gardé, existant amélioré, à retirer sur mon accord). Aucune ligne sans source. Aucun dossier sans contenu actuel.
    Principes à appliquer, chacun justifié dans le tableau quand il change quelque chose :
    - un fichier d'instructions racine court, qui ne contient que ce qui s'applique à chaque tâche ; le reste est indexé et chargé à la demande ;
@@ -26,7 +28,7 @@ AGENTS IA UTILISÉS : [LISTE]. Si je ne te l'ai pas donnée, demande-la-moi avan
    - le point d'entrée que chaque agent lit réellement (étape 2) ;
    - évolutions prévisibles : une ligne chacune (« quand X arrive, ajouter Y »).
    Budget de contexte cible, chiffré (contexte permanent avant et après, en octets et en estimation de tokens), avec la méthode de mesure. Les gains annoncés sont des estimations : dis comment tu les vérifies.
-   KITS : lis `_playbook/KITS.md`. Pour chaque kit, compare son « Quand l'utiliser » à CADRAGE.md. Propose ceux qui s'appliquent, kit tel quel par défaut. Tout écart est justifié et listé. Un kit qui ne s'applique pas n'est pas proposé.
+   KITS : lis `_playbook/KITS.md`. Pour chaque kit, compare son « Quand l'utiliser » à CADRAGE.md. Propose ceux qui s'appliquent, kit tel quel par défaut. Tout écart est justifié et listé. Un kit qui ne s'applique pas n'est pas proposé (le backlog est déjà traité ci-dessus).
 
 4. PROJET EXISTANT (règles non destructives) : n'écrase aucune architecture, aucun skill, aucun script, aucun hook existant. Fusionne (settings.json, hooks, core.hooksPath chaîné), déplace avec git mv, ne supprime rien sans mon accord par élément. Si ce qui existe est vide ou mauvais, améliore. Mesure avant et après (taille du contexte, tests). Régression : annule ton changement et dis-le moi. Projet neuf : construis le minimum utile, rien de plus.
 
