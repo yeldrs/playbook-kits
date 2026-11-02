@@ -18,6 +18,9 @@ Un kit est un ensemble de fichiers prêts à installer, figé par un tag. L'agen
 - [ ] Projet existant : fusionner `settings.json` et `/done`. Ne rien écraser, ne rien supprimer.
 - [ ] Les étapes 2 et 5 de `/done` appellent Notion : sans l'option Notion, les ignorer et lister cet écart dans le rapport.
 - [ ] Remplir `docs/BACKLOG.md` depuis `CADRAGE.md` et depuis le suivi existant du projet, sans inventer.
+- [ ] Le gabarit ne passe pas son propre parseur tel quel : chaque epic doit porter une ligne `- statut:` (`tools/notion-ref.js` l.913). Sans l'option Notion, supprimer aussi la ligne du gabarit qui renvoie à `docs/NOTION_REF.md`.
+- [ ] Si le `package.json` racine déclare `"type": "module"`, ajouter `tools/package.json` contenant `{"type":"commonjs"}` : les outils du kit sont en CommonJS et échouent sinon (`require is not defined`). Écart à lister.
+- [ ] Contrôle : `node tools/notion-ref.js backlog-list` doit s'exécuter sans erreur.
 
 ### Option Notion : installer
 - [ ] Copier `tools/` et `docs/NOTION_REF.md` selon le tableau du README du kit. L'agent s'y réfère pour l'accès Notion. Le fichier d'instructions du projet n'en décrit pas le détail.
