@@ -1,3 +1,4 @@
 * text=auto
 backlog-sync/** text eol=lf
+anti-attribution/** text eol=lf
 *.md text eol=lf
