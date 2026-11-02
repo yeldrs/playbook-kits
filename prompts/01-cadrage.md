@@ -23,7 +23,7 @@ PHASE 2, toujours.
    a. FICHE DE TRI en tête : nature du produit, plateformes, langues, nombre d'écrans (un seul, quelques-uns, beaucoup), finalité à terme, contraintes dures, hors périmètre actuel. Des faits, en mots simples, sans vocabulaire de méthode.
    b. Pitch en une phrase. Public et plateforme.
    c. VISION ET ÉVOLUTIONS : version en cours, finalité visée à terme, évolutions imaginées. Chaque élément est marqué [OK] (avec source) ou [À CONFIRMER]. N'invente aucune évolution.
-   d. ÉTAT DE L'EXISTANT (projet existant seulement) : nature, outils réels, règles dures, écarts, trajectoire, condensés à ce qui sert plus tard. Chaque point garde sa source. La fiche complète reste dans le chat.
+   d. ÉTAT DE L'EXISTANT (projet existant seulement) : nature, outils réels, règles dures, écarts, trajectoire, condensés à ce qui sert plus tard. Chaque point garde sa source. La fiche complète reste dans le chat. Si le projet a déjà un suivi (backlog, roadmap), ne recopie pas ses tâches : une évolution = une ligne et le renvoi à sa source. Le cadrage porte la direction, le suivi porte le travail.
    e. Règles du produit, chacune marquée [OK] (établi, avec source) ou [À CONFIRMER].
    f. Glossaire. Cas limites. Liste d'écrans initiale. Hors périmètre actuel : ce que je choisis de ne pas faire dans la version en cours, même si c'est une bonne idée.
    g. Intentions de design, dans une section séparée des règles du produit.

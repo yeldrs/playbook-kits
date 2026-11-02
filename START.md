@@ -12,6 +12,8 @@ Le projet a peut-être déjà des fichiers d'instructions (CLAUDE.md, AGENTS.md,
 - Ces fichiers sont de la matière à auditer : tu les lis, tu les mesures, tu ne les modifies pas avant mon accord sur la proposition d'architecture.
 - Toute contradiction entre eux et ce kit est listée dans ton rapport. Tu ne la tranche pas.
 - Si un hook ou un skill du projet se déclenche pendant la session et modifie un fichier : STOP, dis-le-moi.
+- Si les instructions du projet imposent aux agents un worktree, une branche dédiée ou un autre lieu de travail : dis-le-moi avant l'audit et demande-moi où travailler. Ne choisis pas seul.
+- Encodage : lis et écris en UTF-8 (sous PowerShell, `-Encoding UTF8`). Sans cela les accents sont corrompus et les constats faux.
 
 ## Accès
 

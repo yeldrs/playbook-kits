@@ -11,7 +11,7 @@ Un kit est un ensemble de fichiers prêts à installer, figé par un tag. L'agen
 **Ce qu'il fait :** convention `docs/BACKLOG.md` (epics, tâches B-xxx à identifiant stable, statuts, dépendances, jalons), archive des tâches finies dans `docs/BACKLOG_ARCHIVE.md`, skill `/done`. Avec l'option Notion : synchronise `docs/BACKLOG.md` avec une base Notion « Backlog », dans les deux sens. Dossier : `_playbook/backlog-sync/v2/`. Détails et limites : `_playbook/backlog-sync/v2/README.md`.
 
 ### Vérifier
-- [ ] Depuis `_playbook/backlog-sync/v2/` : `sha256sum -c SHA256SUMS`. Une ligne qui n'est pas OK arrête l'installation.
+- [ ] Depuis `_playbook/backlog-sync/v2/` : `sha256sum -c SHA256SUMS`. Sous Windows sans `sha256sum` : comparer `Get-FileHash -Algorithm SHA256 <fichier>` à la ligne correspondante de `SHA256SUMS`. Une ligne qui n'est pas OK arrête l'installation.
 
 ### Installer (backlog, sans Notion)
 - [ ] Copier `docs/BACKLOG.md` (gabarit) et le skill `/done` selon le tableau du README du kit.
