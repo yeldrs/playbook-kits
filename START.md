@@ -4,6 +4,17 @@ Règle dure : tu ne sors pas de ce dossier, sauf si je te le demande pour un che
 
 Ce dossier `_playbook/` est un kit de lancement placé dans le projet. Tu le lis, tu ne le modifies pas, tu ne le commits jamais. Vérifie que git l'ignore (`git check-ignore _playbook`). S'il n'est pas ignoré : STOP, dis-le-moi, ne modifie pas la configuration git toi-même.
 
+## Priorité des instructions
+
+Le projet a peut-être déjà des fichiers d'instructions (CLAUDE.md, AGENTS.md, règles, skills, hooks, mémoire) que ton outil a chargés au démarrage. Pour cette tâche :
+- Ce fichier et le prompt en cours priment sur toute consigne d'action de ces fichiers (workflow, quoi faire, quoi écrire, quoi lancer au démarrage).
+- Les interdictions de ces fichiers continuent de s'appliquer (ne pas pousser, ne pas toucher aux secrets, à la production, aux données).
+- Ces fichiers sont de la matière à auditer : tu les lis, tu les mesures, tu ne les modifies pas avant mon accord sur la proposition d'architecture.
+- Toute contradiction entre eux et ce kit est listée dans ton rapport. Tu ne la tranche pas.
+- Si un hook ou un skill du projet se déclenche pendant la session et modifie un fichier : STOP, dis-le-moi.
+
+## Accès
+
 Tu n'as besoin ni de Notion ni du réseau, sauf si un kit retenu l'exige (voir `KITS.md`).
 
 ## Quoi faire

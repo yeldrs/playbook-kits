@@ -25,6 +25,13 @@ Kit de lancement pour un agent de code : cadrer un projet (neuf ou existant), pu
 6. **Contrôler** avant d'intégrer : `git diff pre-playbook --stat`. Chaque suppression ou déplacement doit avoir ton accord. Tu fusionnes toi-même.
 7. **Nettoyer** : supprime `_playbook/` quand tu n'en as plus besoin.
 
+## Si le projet a déjà des instructions d'agent
+
+Ton outil charge au démarrage le `CLAUDE.md`, l'`AGENTS.md`, les skills et les hooks du projet. Ils peuvent contredire ce kit. `START.md` règle la priorité (les consignes d'action du kit passent avant, les interdictions du projet restent), mais c'est une consigne écrite, pas un blocage : l'agent a déjà ces fichiers en tête.
+- Surveille les contradictions listées dans son rapport.
+- Si l'agent suit une consigne du projet plutôt que le kit, rappelle-lui : « `_playbook/START.md` prime pour cette tâche ».
+- Vérifie dans la doc de ton outil s'il existe un mode de lancement qui ignore les instructions du projet. Je ne l'ai pas vérifié.
+
 ## Ce que fait la mise en place
 
 - Elle ne copie aucun gabarit : l'architecture se déduit de `CADRAGE.md` (fiche de tri, état de l'existant) et d'un audit de l'existant (fichiers d'instructions, skills, hooks, doublons, contexte chargé à chaque session, scalabilité).
