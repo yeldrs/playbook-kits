@@ -20,6 +20,7 @@ Un kit est un ensemble de fichiers prêts à installer, figé par un tag. L'agen
 - [ ] Remplir `docs/BACKLOG.md` depuis `CADRAGE.md` et depuis le suivi existant du projet, sans inventer.
 - [ ] Le gabarit ne passe pas son propre parseur tel quel : chaque epic doit porter une ligne `- statut:` (`tools/notion-ref.js` l.913). Sans l'option Notion, supprimer aussi la ligne du gabarit qui renvoie à `docs/NOTION_REF.md`.
 - [ ] Si le `package.json` racine déclare `"type": "module"`, ajouter `tools/package.json` contenant `{"type":"commonjs"}` : les outils du kit sont en CommonJS et échouent sinon (`require is not defined`). Écart à lister.
+- [ ] Si le projet utilise ESLint, ajouter `tools/**` aux ignores : les outils du kit sont en CommonJS et déclenchent `no-require-imports` (9 erreurs constatées sur un projet Next). Ne jamais modifier les fichiers du kit pour les faire passer le lint (leur SHA-256 doit rester identique). Mesurer `npm run lint` avant et après l'installation. Le dossier `_playbook/` est lui aussi linté tant qu'il est dans le projet : ne pas l'ajouter aux ignores versionnés, il disparaît à la fin.
 - [ ] Contrôle : `node tools/notion-ref.js backlog-list` doit s'exécuter sans erreur.
 
 ### Option Notion : installer
