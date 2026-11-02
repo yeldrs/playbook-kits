@@ -1,0 +1,41 @@
+Règle dure : tu ne sors pas de ce dossier, sauf si je te le demande pour un chemin précis et que tu me demandes confirmation. Le dossier `_playbook/` (ce kit) est dans le projet : tu le lis, tu ne le modifies pas et tu ne le commits jamais.
+OBJECTIF : mettre en place le dépôt de CE projet à partir de CADRAGE.md, rien d'autre. Pas de modèle copié, pas d'invention, pas de complexité qui n'a pas de source.
+L'architecture n'est pas la même pour tous les projets : elle se déduit de CE projet (sa nature, sa taille, ses agents, ce qui existe déjà, ce qui doit évoluer). Elle vise trois choses : lisible et fiable pour une IA, extensible sans tout refaire, sobre en tokens.
+AGENTS IA UTILISÉS : [LISTE]. Si je ne te l'ai pas donnée, demande-la-moi avant l'étape 2.
+
+0. LECTURE : lis CADRAGE.md à la racine (fiche de tri, état de l'existant, règles, évolutions, hors périmètre). Absent : STOP, dis-moi de lancer d'abord le cadrage (`_playbook/START.md`). Ne crée rien.
+
+1. AUDIT DE L'EXISTANT (lecture seule). Tu ne déplaces, ne renommes, ne supprimes rien. Ne lis jamais les fichiers de secrets : signale seulement leur existence. Chaque constat porte sa preuve (fichier, ligne, mesure) ou « non mesuré ».
+   a. CARTE : code, documents, fichiers d'instructions, skills, hooks, scripts, tests, .git, remotes. Pour chacun : nature, utile ou non.
+   b. CONTEXTE CHARGÉ : ce que chaque agent de la liste « AGENTS IA UTILISÉS » charge à chaque session (fichiers d'instructions racine et fichiers qu'ils importent, descriptions de skills). Mesure : octets et lignes de chaque fichier, total du contexte permanent, estimation en tokens (octets divisés par 4, marquée comme estimation).
+   c. GASPILLAGE : contenu dupliqué entre fichiers, règles recopiées au lieu d'être pointées, listes ou catalogues qui existent déjà ailleurs, gros documents lus en entier qui pourraient être indexés, documents périmés, doublons, renvois cassés.
+   d. SKILLS : pour chacun, longueur et clarté de la description (le déclencheur est-il précis ?), chevauchement avec un autre skill ou avec une règle du fichier d'instructions, usage réel si une trace existe (historique git, mentions). Un skill sans déclencheur clair ou sans usage : candidat à l'amélioration, jamais à la suppression sans mon accord.
+   e. SCALABILITÉ : ce qui casse si le projet double de taille (fichier d'instructions qui grossit, liste qui s'allonge, absence d'index, dossier fourre-tout, règles sans propriétaire).
+   f. COHÉRENCE AVEC LE CADRAGE : nature, plateformes, nombre d'écrans, finalité, contraintes dures de la fiche de tri contre l'état du dépôt. Liste les écarts sans trancher.
+   g. MESURE DE DÉPART : les tailles ci-dessus, et les tests (nombre et résultat, si les lancer est sans effet de bord, sinon « non mesuré »).
+
+2. DOC : pour chaque agent listé, vérifie dans la documentation de sa version installée quels fichiers d'instructions, skills et hooks il lit, et comment il les charge. N'invente aucun mécanisme. Une seule source de vérité, les autres fichiers la pointent. Mécanisme introuvable : écris « non retrouvé ».
+
+3. PROPOSITION (STOP, j'attends mon accord). Conçois l'architecture à partir de l'audit et du cadrage, pas d'un gabarit : la raison de chaque choix se lit dans l'un des deux.
+   Un tableau : élément (dossier, fichier, skill, hook, script) | source (constat de l'audit ou ligne de CADRAGE.md, ou raison technique vérifiable) | alternative plus simple | état (nouveau, existant gardé, existant amélioré, à retirer sur mon accord). Aucune ligne sans source. Aucun dossier sans contenu actuel.
+   Principes à appliquer, chacun justifié dans le tableau quand il change quelque chose :
+   - un fichier d'instructions racine court, qui ne contient que ce qui s'applique à chaque tâche ; le reste est indexé et chargé à la demande ;
+   - une seule source de vérité par information, les autres fichiers la pointent ;
+   - ressources indexées (chemin, nature, utilité), jamais recopiées ;
+   - skills : seulement pour une procédure déjà répétée, avec un déclencheur précis ; un skill existant mal décrit est amélioré avant d'en créer un autre ;
+   - le point d'entrée que chaque agent lit réellement (étape 2) ;
+   - évolutions prévisibles : une ligne chacune (« quand X arrive, ajouter Y »).
+   Budget de contexte cible, chiffré (contexte permanent avant et après, en octets et en estimation de tokens), avec la méthode de mesure. Les gains annoncés sont des estimations : dis comment tu les vérifies.
+   KITS : lis `_playbook/KITS.md`. Pour chaque kit, compare son « Quand l'utiliser » à CADRAGE.md. Propose ceux qui s'appliquent, kit tel quel par défaut. Tout écart est justifié et listé. Un kit qui ne s'applique pas n'est pas proposé.
+
+4. PROJET EXISTANT (règles non destructives) : n'écrase aucune architecture, aucun skill, aucun script, aucun hook existant. Fusionne (settings.json, hooks, core.hooksPath chaîné), déplace avec git mv, ne supprime rien sans mon accord par élément. Si ce qui existe est vide ou mauvais, améliore. Mesure avant et après (taille du contexte, tests). Régression : annule ton changement et dis-le moi. Projet neuf : construis le minimum utile, rien de plus.
+
+5. CONSTRUCTION (après accord) : un commit local par étape. Aucun push, aucune clé, aucune variable d'environnement dans un fichier. Message de commit neutre.
+
+6. ANTI-SIGNATURE : applique `_playbook/prompts/03-anti-attribution.md`, ses 4 couches (réglage de l'outil, consigne dans le fichier d'instructions, hooks commit-msg et pre-commit versionnés, audit). Teste dans un dépôt jetable, jamais dans le vrai. Chaque réglage est vérifié dans la doc de la version installée, sinon « non retrouvé » et les hooks font foi. Ne modifie jamais l'identité git.
+
+7. KITS RETENUS : suis la procédure de chaque kit dans `_playbook/KITS.md`, étape par étape. Les actions réservées à moi (créer des intégrations, exporter des tokens, activer des hooks) sont des STOP : tu me les indiques et tu attends.
+
+8. CONTRÔLE : relis ce que tu as créé. Retire tout ce qui n'a pas de source. Refais les mesures de l'étape 1 et compare-les au budget cible.
+
+RENDU : arborescence finale, mesures avant et après (octets, estimation de tokens, lignes, nombre de skills), kits installés avec leurs écarts, ce qui est volontairement laissé de côté, ce qui n'est pas testé. Termine en me demandant si je veux garder ou supprimer `_playbook/` ; tu ne le supprimes pas sans mon accord.
